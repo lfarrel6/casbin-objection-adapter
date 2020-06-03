@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 0.2.1 (2020-06-03)
+
+### Features
+
+* Reconfigured the entrypoints in [the original casbin-objection-adapter](https://github.com/willsoto/casbin-objection-adapter). Require should resolve to the commonJS entrypoint and import should resolve to esm.
+* It will be deprecated once the original package is updated.
+
+
 ## [0.2.0](https://github.com/willsoto/casbin-objection-adapter/compare/v0.1.1...v0.2.0) (2020-05-10)
 
 

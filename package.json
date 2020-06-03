@@ -1,5 +1,5 @@
 {
-  "name": "@willsoto/casbin-objection-adapter",
+  "name": "casbin-objection-adapter",
   "version": "0.2.0",
   "description": "",
   "keywords": [
@@ -11,16 +11,18 @@
   ],
   "repository": {
     "type": "git",
-    "url": "github:willsoto/casbin-objection-adapter"
+    "url": "github:lfarrel6/casbin-objection-adapter"
   },
   "license": "Apache-2.0",
-  "author": "Will Soto <willsoto@users.noreply.github.com> (https://github.com/willsoto)",
-  "exports": "./dist/esm.js",
+  "author": "Liam Farrelly <lfarrel6@users.noreply.github.com> (https://github.com/lfarrel6)",
+  "exports": {
+    "import": "./dist/esm.js",
+    "require": "./dist/cjs.js"
+  },
   "main": "./dist/cjs.js",
   "typings": "./typings/index.d.ts",
   "files": [
     "dist",
-    "src",
     "typings"
   ],
   "scripts": {
