@@ -1,6 +1,6 @@
 # Casbin Objection Adapter
 
-![tests](https://github.com/willsoto/casbin-objection-adapter/workflows/tests/badge.svg)
+![tests](https://github.com/lfarrel6/casbin-objection-adapter/workflows/tests/badge.svg)
 
 <!-- prettier-ignore-start -->
 
@@ -17,15 +17,15 @@
 ## Installation
 
 ```bash
-npm install @willsoto/casbin-objection-adapter --save
+npm install casbin-objection-adapter --save
 ```
 
 ```bash
-yarn add @willsoto/casbin-objection-adapter
+yarn add casbin-objection-adapter
 ```
 
 ```bash
-pnpm add @willsoto/casbin-objection-adapter
+pnpm add casbin-objection-adapter
 ```
 
 ## Basic usage
