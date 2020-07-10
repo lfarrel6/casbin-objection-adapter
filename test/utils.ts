@@ -1,13 +1,14 @@
 import Knex from "knex";
-import * as path from "path";
 
-export function makeAndConfigureDatabase(dirname: string): Knex {
+export function makeAndConfigureDatabase(): Knex {
   const knex = Knex({
-    client: "sqlite3",
+    client: "pg",
     useNullAsDefault: true,
     asyncStackTraces: true,
     connection: {
-      filename: path.join(dirname, "casbin.sqlite"),
+      user: "casbin_objection_adapter_test_user",
+      password: "password",
+      database: "casbin_objection_adapter_test",
     },
   });
 

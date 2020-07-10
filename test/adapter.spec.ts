@@ -8,9 +8,10 @@ describe("ObjectionAdapter", () => {
   let adapter: ObjectionAdapter;
   let enforcer: Enforcer;
 
-  const knex = makeAndConfigureDatabase(__dirname);
+  const knex = makeAndConfigureDatabase();
 
   beforeEach(async () => {
+    await knex.raw(`select 1+1 as result`);
     adapter = await ObjectionAdapter.newAdapter(knex);
 
     enforcer = await newEnforcer(

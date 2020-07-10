@@ -17,10 +17,11 @@ devDependencies:
   eslint-plugin-jest: 23.13.1_eslint@7.0.0+typescript@3.9.2
   husky: 4.2.5
   jest: 26.0.1
-  knex: 0.21.1_sqlite3@4.2.0
+  knex: 0.21.1_pg@8.3.0+sqlite3@4.2.0
   lint-staged: 10.2.4
   markdown-toc: 1.2.0
   objection: 2.1.3_knex@0.21.1
+  pg: 8.3.0_pg@8.3.0
   prettier: 2.0.5
   prettier-plugin-organize-imports: 1.0.4_prettier@2.0.5+typescript@3.9.2
   prettier-plugin-packagejson: 2.2.3_prettier@2.0.5
@@ -2155,6 +2156,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-MQcXEUbCKtEo7bhqEs6560Hyd4XaovZlO/k9V3hjVUF/zwW7KBVdSK4gIt/bzwS9MbR5qob+F5jusZsb0YQK2A==
+  /buffer-writer/2.0.0:
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-a7ZpuTZU1TRtnwyCNW3I5dc0wWNC3VR9S++Ewyk2HHZdrO3CQJqSpd+95Us590V6AL7JqUAH2IwZ/398PmNFgw==
   /builtins/1.0.3:
     dev: true
     resolution:
@@ -5300,7 +5307,7 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
-  /knex/0.21.1_sqlite3@4.2.0:
+  /knex/0.21.1_pg@8.3.0+sqlite3@4.2.0:
     dependencies:
       colorette: 1.1.0
       commander: 5.1.0
@@ -5312,6 +5319,7 @@ packages:
       liftoff: 3.1.0
       lodash: 4.17.15
       mkdirp: 1.0.4
+      pg: 8.3.0_pg@8.3.0
       pg-connection-string: 2.2.0
       sqlite3: 4.2.0
       tarn: 3.0.0
@@ -6274,7 +6282,7 @@ packages:
     dependencies:
       ajv: 6.12.2
       db-errors: 0.2.3
-      knex: 0.21.1_sqlite3@4.2.0
+      knex: 0.21.1_pg@8.3.0+sqlite3@4.2.0
     dev: true
     engines:
       node: '>=8.0.0'
@@ -6422,6 +6430,10 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==
+  /packet-reader/1.0.0:
+    dev: true
+    resolution:
+      integrity: sha512-HAKu/fG3HpHFO0AA8WE8q2g+gBJaZ9MG7fcKk+IJPLTGAD6Psw4443l+9DGRbOIh3/aXr7Phy0TjilYivJo5XQ==
   /pacote/11.1.9:
     dependencies:
       '@npmcli/git': 2.0.2
@@ -6611,6 +6623,63 @@ packages:
     dev: true
     resolution:
       integrity: sha512-xB/+wxcpFipUZOQcSzcgkjcNOosGhEoPSjz06jC89lv1dj7mc9bZv6wLVy8M2fVjP0a/xN0N988YDq1L0FhK3A==
+  /pg-connection-string/2.3.0:
+    dev: true
+    resolution:
+      integrity: sha512-ukMTJXLI7/hZIwTW7hGMZJ0Lj0S2XQBCJ4Shv4y1zgQ/vqVea+FLhzywvPj0ujSuofu+yA4MYHGZPTsgjBgJ+w==
+  /pg-int8/1.0.1:
+    dev: true
+    engines:
+      node: '>=4.0.0'
+    resolution:
+      integrity: sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==
+  /pg-pool/3.2.1_pg@8.3.0:
+    dependencies:
+      pg: 8.3.0_pg@8.3.0
+    dev: true
+    peerDependencies:
+      pg: '>=8.0'
+    resolution:
+      integrity: sha512-BQDPWUeKenVrMMDN9opfns/kZo4lxmSWhIqo+cSAF7+lfi9ZclQbr9vfnlNaPr8wYF3UYjm5X0yPAhbcgqNOdA==
+  /pg-protocol/1.2.5:
+    dev: true
+    resolution:
+      integrity: sha512-1uYCckkuTfzz/FCefvavRywkowa6M5FohNMF5OjKrqo9PSR8gYc8poVmwwYQaBxhmQdBjhtP514eXy9/Us2xKg==
+  /pg-types/2.2.0:
+    dependencies:
+      pg-int8: 1.0.1
+      postgres-array: 2.0.0
+      postgres-bytea: 1.0.0
+      postgres-date: 1.0.5
+      postgres-interval: 1.2.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==
+  /pg/8.3.0_pg@8.3.0:
+    dependencies:
+      buffer-writer: 2.0.0
+      packet-reader: 1.0.0
+      pg-connection-string: 2.3.0
+      pg-pool: 3.2.1_pg@8.3.0
+      pg-protocol: 1.2.5
+      pg-types: 2.2.0
+      pgpass: 1.0.2
+      semver: 4.3.2
+    dev: true
+    engines:
+      node: '>= 8.0.0'
+    peerDependencies:
+      pg: '*'
+    resolution:
+      integrity: sha512-jQPKWHWxbI09s/Z9aUvoTbvGgoj98AU7FDCcQ7kdejupn/TcNpx56v2gaOTzXkzOajmOEJEdi9eTh9cA2RVAjQ==
+  /pgpass/1.0.2:
+    dependencies:
+      split: 1.0.1
+    dev: true
+    resolution:
+      integrity: sha1-Knu0G2BltnkH6R2hsHwYR8h3swY=
   /picomatch/2.2.2:
     dev: true
     engines:
@@ -6685,6 +6754,32 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-AerA/jta9xoqbAL+q7jB/vfgDqs=
+  /postgres-array/2.0.0:
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-VpZrUqU5A69eQyW2c5CA1jtLecCsN2U/bD6VilrFDWq5+5UIEVO7nazS3TEcHf1zuPYO/sqGvUvW62g86RXZuA==
+  /postgres-bytea/1.0.0:
+    dev: true
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-AntTPAqokOJtFy1Hz5zOzFIazTU=
+  /postgres-date/1.0.5:
+    dev: true
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha512-pdau6GRPERdAYUQwkBnGKxEfPyhVZXG/JiS44iZWiNdSOWE09N2lUgN6yshuq6fVSon4Pm0VMXd1srUUkLe9iA==
+  /postgres-interval/1.2.0:
+    dependencies:
+      xtend: 4.0.2
+    dev: true
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==
   /prelude-ls/1.1.2:
     dev: true
     engines:
@@ -7338,6 +7433,11 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-mUdIBBvdn0PLOeP3TEkMH7HHeUP3GjsXCwKarjv/kGmUFOYg1VqEemKhoQpWMu6X2I8kHeuVdGibLGkVK+/5Qw==
+  /semver/4.3.2:
+    dev: true
+    hasBin: true
+    resolution:
+      integrity: sha1-x6BxWKgL7dBSNVt3DYLWZA+AO+c=
   /semver/5.7.1:
     dev: true
     hasBin: true
@@ -8637,6 +8737,7 @@ specifiers:
   lint-staged: ~10.2.4
   markdown-toc: ~1.2.0
   objection: ~2.1.3
+  pg: ^8.3.0
   prettier: ~2.0.5
   prettier-plugin-organize-imports: ~1.0.4
   prettier-plugin-packagejson: ~2.2.3

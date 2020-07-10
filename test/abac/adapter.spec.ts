@@ -9,7 +9,7 @@ describe("ObjectionAdapter (ABAC)", () => {
   let data1: TestResource;
   let data2: TestResource;
 
-  const knex = makeAndConfigureDatabase(__dirname);
+  const knex = makeAndConfigureDatabase();
 
   class TestResource {
     public Name: string;

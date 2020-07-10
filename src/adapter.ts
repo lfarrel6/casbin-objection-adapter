@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Adapter, Helper, Model } from "casbin";
 import * as Knex from "knex";
-import { CasbinRule } from "./model";
+import { getFilteredPolicies } from "./filter";
+import { CasbinFilter, CasbinRule } from "./model";
 import { Logger, ObjectionAdapterOptions, Policy } from "./types";
 
 /**
@@ -9,6 +10,7 @@ import { Logger, ObjectionAdapterOptions, Policy } from "./types";
  * @see https://github.com/casbin/xorm-adapter/blob/master/adapter.go
  */
 export class ObjectionAdapter implements Adapter {
+  private filtered = false;
   constructor(
     private knex: Knex,
     private options: Required<ObjectionAdapterOptions>,
@@ -44,6 +46,14 @@ export class ObjectionAdapter implements Adapter {
     return adapter;
   }
 
+  isFiltered(): boolean {
+    return this.filtered;
+  }
+
+  setFiltered(isFiltered: boolean): void {
+    this.filtered = isFiltered;
+  }
+
   /**
    * Reference implementation:
    * @see https://github.com/casbin/xorm-adapter/blob/79a2aa54a016320eb29cf90090f642183827750b/adapter.go#L28-L36
@@ -75,15 +85,35 @@ export class ObjectionAdapter implements Adapter {
   }
 
   async loadPolicy(model: Model): Promise<void> {
+    this.setFiltered(false);
     this.logger.log("Loading policy");
 
     const policies = await this.modelClass.query();
 
     this.logger.log("Found policies %O", policies);
 
-    for (const policy of policies) {
+    this.loadPolicyLines(policies, model);
+  }
+
+  loadPolicyLines(policies: CasbinRule[], model: Model): void {
+    policies.forEach((policy) => {
       this.loadPolicyLine(policy, model);
+    });
+  }
+
+  async loadFilteredPolicy(model: Model, filter: CasbinFilter): Promise<void> {
+    if (!filter) {
+      this.loadPolicy(model);
+      return;
     }
+    this.logger.log("Loading filtered policies");
+
+    const policies = await getFilteredPolicies(filter, this.modelClass);
+
+    this.logger.log("Filter found %O", policies);
+
+    this.loadPolicyLines(policies, model);
+    this.setFiltered(true);
   }
 
   /**

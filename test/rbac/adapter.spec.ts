@@ -14,7 +14,7 @@ describe("ObjectionAdapter (RBAC)", () => {
     data2AdminWrite: ["data2_admin", "data2", "write"],
   };
 
-  const knex = makeAndConfigureDatabase(__dirname);
+  const knex = makeAndConfigureDatabase();
 
   beforeEach(async () => {
     adapter = await ObjectionAdapter.newAdapter(knex);

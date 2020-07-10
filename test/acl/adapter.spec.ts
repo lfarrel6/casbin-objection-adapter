@@ -13,7 +13,7 @@ describe("ObjectionAdapter (ACL)", () => {
     stark: ["tony", "data3", "root"],
   };
 
-  const knex = makeAndConfigureDatabase(__dirname);
+  const knex = makeAndConfigureDatabase();
 
   beforeEach(async () => {
     adapter = await ObjectionAdapter.newAdapter(knex);

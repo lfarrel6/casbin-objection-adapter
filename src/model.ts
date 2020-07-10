@@ -23,3 +23,6 @@ export class CasbinRule extends objection.Model {
   v4!: string;
   v5!: string;
 }
+
+export type CasbinRuleFilter = Array<string | null | undefined>;
+export type CasbinFilter = Record<string, CasbinRuleFilter>;
