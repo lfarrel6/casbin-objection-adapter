@@ -46,11 +46,11 @@ export class ObjectionAdapter implements Adapter {
     return adapter;
   }
 
-  isFiltered(): boolean {
+  public isFiltered(): boolean {
     return this.filtered;
   }
 
-  setFiltered(isFiltered: boolean): void {
+  public enabledFiltered(isFiltered: boolean): void {
     this.filtered = isFiltered;
   }
 
@@ -85,7 +85,7 @@ export class ObjectionAdapter implements Adapter {
   }
 
   async loadPolicy(model: Model): Promise<void> {
-    this.setFiltered(false);
+    this.enabledFiltered(false);
     this.logger.log("Loading policy");
 
     const policies = await this.modelClass.query();
@@ -113,7 +113,7 @@ export class ObjectionAdapter implements Adapter {
     this.logger.log("Filter found %O", policies);
 
     this.loadPolicyLines(policies, model);
-    this.setFiltered(true);
+    this.enabledFiltered(true);
   }
 
   /**

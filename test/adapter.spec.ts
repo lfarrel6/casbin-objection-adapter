@@ -105,4 +105,45 @@ describe("ObjectionAdapter", () => {
     await expect(CasbinRule.query()).resolves.toHaveLength(1);
     await expect(enforcer.hasPolicy(...policy)).resolves.toBe(true);
   });
+
+  test("Supports filtered policy loading", async () => {
+    enforcer.enableAutoSave(true);
+
+    await enforcer.addPolicies([
+      ["alice", "data1", "read"],
+      ["alice", "data2", "read"],
+      ["bob", "data1", "read"],
+    ]);
+    await enforcer.loadFilteredPolicy({
+      p: ["", "data1"],
+      g: [],
+    });
+
+    expect(await enforcer.hasPolicy("alice", "data1", "read")).toBe(true);
+    expect(await enforcer.hasPolicy("bob", "data1", "read")).toBe(true);
+    return expect(await enforcer.hasPolicy("alice", "data2", "read")).toBe(
+      false,
+    );
+  });
+
+  test("Supports complex filtered policy loading", async () => {
+    enforcer.enableAutoSave(true);
+
+    await enforcer.addPolicies([
+      ["alice", "data-a", "update"],
+      ["alice", "data", "delete"],
+      ["bob", "data-b", "write"],
+      ["bob", "data-c", "save"],
+    ]);
+    await enforcer.loadFilteredPolicy({
+      p: ["", "like:data-%", "regex:(update|write)"],
+      g: [],
+    });
+
+    expect(await enforcer.hasPolicy("alice", "data-a", "update")).toBe(true);
+    expect(await enforcer.hasPolicy("alice", "data", "delete")).toBe(false);
+
+    expect(await enforcer.hasPolicy("bob", "data-b", "write")).toBe(true);
+    expect(await enforcer.hasPolicy("bob", "data-c", "save")).toBe(false);
+  });
 });
