@@ -35,7 +35,7 @@ See [the Casbin adapters documentation](https://casbin.org/docs/en/adapters) for
 ```js
 import Knex from "knex";
 import { newEnforcer } from "casbin";
-import { ObjectionAdapter } from "@willsoto/casbin-objection-adapter";
+import { ObjectionAdapter } from "casbin-objection-adapter";
 
 const knex = Knex({
   /* regular knex options */
