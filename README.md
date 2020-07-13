@@ -75,12 +75,16 @@ The following options are available:
 #### Filtered policy loading
 
 This adapter supports filtered policy loading as of v0.3.1.
+
 Policies are filtered using the `loadFilteredPolicy` function on the enforcer. Note that loading a filtered policy clears the in memory policy data. This is a feature of Casbin and not this adapter.
+
 Filter examples taken from [casbin-pg-adapter](https://github.com/touchifyapp/casbin-pg-adapter)
 
 The filters take an object with keys refering to the ptype of the filter, and values containing an array of filter values.
-Any empty string, undefined, or null value is ignored in the filter. Plain strings (such as those used in the simple filter example below) are
-tested for simple equality.
+
+Any empty string, undefined, or null value is ignored in the filter.
+
+Plain strings (such as those used in the simple filter example below) are tested for simple equality.
 Strings prefixed with `regex:` or `like:` are tested using pattern matching.
 
 Simple filter example:
